@@ -2,6 +2,7 @@ const boxImage = document.querySelector("main > img");
 const wonderButton = document.querySelector("main > button");
 const messageBox = document.querySelector("main > div");
 const linkButton = document.querySelector(".download-area > button");
+
 function openBox() {
   boxImage.src = "static/images/box-1-opened.png";
 }
@@ -88,11 +89,8 @@ wonderButton.addEventListener("click", () => {
     bringBoxPositionDownAndAnimate();
     displayMessage();
   }, 2000);
-  //   activateRedirection("https://www.google.com");
-  activateAssetDownloading(
-    "https://drive.google.com/u/0/uc?id=1uk5bCziZpoiSVBx-Sj1OeVEa0iNcGobS&export=download",
-    "wonder-box-download.png"
-  );
+  activateRedirection("https://www.google.com");
+  //   activateAssetDownloading(config.link, "wonder-box-download.png");
   setInterval(() => {
     generateStars(boxImage);
   }, 500);
