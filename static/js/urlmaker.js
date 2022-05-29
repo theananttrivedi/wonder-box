@@ -2,6 +2,7 @@ const form = document.querySelector("form");
 const m = document.querySelector('[name="m"]');
 const l = document.querySelector('[name="l"]');
 const r = document.querySelector('[name="r"]');
+const url__ = document.querySelector('[name="url"]');
 function stringToBase64(string) {
   return btoa(string);
 }
@@ -37,10 +38,16 @@ function createURL2(url) {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const url = createURL2(window.location.href);
+  console.log(url__);
+  const url = createURL2(url__.value);
 
   const p = document.createElement("p");
   p.innerText = url;
   document.body.appendChild(p);
   navigator.clipboard.writeText(url);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("loaded");
+  url__.value = window.location.href;
 });
