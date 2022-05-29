@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+main > img {
+  /* width: clamp(8rem, 50vw, 12rem); */
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 12rem;
+  transition: all 1.5s;
+}
+
+.bounce {
+  animation: up-and-down 2s infinite linear alternate;
+}
+
+@keyframes up-and-down {
+  0% {
+    transform: translate(-50%, calc(50% - 1.5rem));
+  }
+  50% {
+    transform: translate(-50%, calc(50% + 1.5rem));
+  }
+  100% {
+    transform: translate(-50%, calc(50% - 1.5rem));
+  }
+}
+
+.down {
+  top: unset;
+  bottom: 6rem;
+  transform: translateX(-50%);
+  animation: bounce-upanddown 2s infinite linear;
+  animation-delay: 2000ms;
+}
+
+.bounce-down {
+  animation: bounce-upanddown 2s infinite linear;
+}
+
+@keyframes bounce-upanddown {
+  0% {
+    transform: translate(-50%, 1.2rem);
+  }
+  50% {
+    transform: translate(-50%, -1.2rem);
+  }
+  100% {
+    transform: translate(-50%, 1.2rem);
+  }
+}
+
+main > button {
+  position: absolute;
+  bottom: 2rem;
+  background-color: black;
+  color: white;
+  font-size: clamp(1.2rem, 5vw, 1.6rem);
+  padding-inline: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 1rem;
+}
+
+main > div {
+  opacity: 0;
+  position: absolute;
+  top: 10%;
+  left: 0%;
+  margin-left: 1rem;
+}
+
+.display-message {
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+main > div > h3 {
+  font-size: clamp(1.5rem, 10vw, 4rem);
+}
+
+main > div > p {
+  font-size: clamp(1.2rem, 10vw, 2rem);
+}
+
+main > div > button {
+  background-color: black;
+  color: white;
+  font-size: clamp(1.2rem, 5vw, 1.6rem);
+  padding-inline: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 1rem;
+}
