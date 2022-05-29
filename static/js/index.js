@@ -2,6 +2,33 @@ const boxImage = document.querySelector("main > img");
 const wonderButton = document.querySelector("main > button");
 const messageBox = document.querySelector("main > div");
 const linkButton = document.querySelector(".download-area > button");
+const messageSection = document.querySelector("#message-paragraph");
+const config = {
+  redirectButton: false,
+  downloadButton: false,
+  link: "",
+  message: "",
+};
+
+function init() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("r") && params.has("d")) {
+    config.redirectButton = params.get("r") === "true" ? true : false;
+    config.downloadButton = false;
+  } else if (params.has("r") && !params.has("d")) {
+    config.redirectButton = params.get("r") === "true" ? true : false;
+    config.downloadButton = false;
+  } else if (!params.has("r") && params.has("d")) {
+    config.redirectButton = false;
+    config.downloadButton = params.get("d") === "true" ? true : false;
+  }
+
+  config.link = params.get("l") ? params.get("l") : "";
+  config.link = atob(config.link);
+
+  config.message = params.get("m") ? params.get("m") : "";
+  config.message = atob(config.message);
+}
 
 function openBox() {
   boxImage.src = "static/images/box-1-opened.png";
@@ -18,7 +45,6 @@ function displayMessage() {
 function bringBoxPositionDownAndAnimate() {
   boxImage.classList.remove("bounce");
   boxImage.classList.add("down");
-  //   boxImage.classList.add("bounce-down");
 }
 
 function throwPopper() {
@@ -35,13 +61,12 @@ function generateStars(selector) {
   });
 }
 
-// function stopLinkBehaviour() {
-
-// }
-
 function activateRedirection(link) {
   linkButton.addEventListener("click", () => {
-    window.open(link, "_blank");
+    removeDownloadText();
+    createThanks("Redirecting in 3 seconds");
+    makeDownloadButtonSmall();
+    setTimeout(() => window.open(link, "_blank"), 3000);
   });
 }
 
@@ -89,9 +114,26 @@ wonderButton.addEventListener("click", () => {
     bringBoxPositionDownAndAnimate();
     displayMessage();
   }, 2000);
-  activateRedirection("https://www.google.com");
-  //   activateAssetDownloading(config.link, "wonder-box-download.png");
+  if (config.redirectButton) {
+    activateRedirection(config.link);
+  } else if (config.downloadButton) {
+    activateAssetDownloading(config.link, "wonder-box-download.png");
+  }
+  console.log(config);
+
+  if (config.message) {
+    messageSection.innerHTML = config.message;
+  } else {
+    messageSection.innerHTML = "<p></p>";
+  }
+
   setInterval(() => {
     generateStars(boxImage);
   }, 500);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("loaded");
+  init();
+  console.log(config);
 });
