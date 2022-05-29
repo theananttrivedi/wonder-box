@@ -37,7 +37,7 @@ function createURL2(url) {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const url = createURL2(window.location.origin);
+  const url = createURL2(window.location.href);
 
   const p = document.createElement("p");
   p.innerText = url;
