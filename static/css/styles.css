@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+:root {
+  --base-font: "Inter";
+}
+
 main {
   display: flex;
   justify-content: center;
@@ -75,14 +79,20 @@ main > button {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   border-radius: 1rem;
+  font-family: "Inter";
 }
 
 main > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
   opacity: 0;
   position: absolute;
   top: 10%;
   left: 0%;
-  margin-left: 1rem;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  font-family: "Inter";
 }
 
 .display-message {
@@ -92,18 +102,82 @@ main > div {
 
 main > div > h3 {
   font-size: clamp(1.5rem, 10vw, 4rem);
+  font-weight: 800;
+}
+
+main > div > section > p {
+  font-size: clamp(1.2rem, 10vw, 2rem);
+  line-height: 3rem;
 }
 
 main > div > p {
   font-size: clamp(1.2rem, 10vw, 2rem);
+  line-height: 3rem;
 }
 
-main > div > button {
-  background-color: black;
-  color: white;
+.download-area > p {
+  font-size: clamp(1.2rem, 6vw, 2rem);
+  line-height: 3rem;
+}
+
+.download-area > button {
   font-size: clamp(1.2rem, 5vw, 1.6rem);
   padding-inline: 0.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   border-radius: 1rem;
+  text-decoration: none;
+  display: block;
+  /* transition: width, top, right, 1s linear; */
 }
+
+.show-full {
+  background-color: black;
+  color: white;
+  width: 100%;
+}
+
+.download-button-text {
+  font-size: clamp(1.2rem, 8vw, 1.6rem);
+}
+
+.download-button-small {
+  animation: downloadbtnsmall 2s ease-in-out forwards;
+}
+
+@keyframes downloadbtnsmall {
+  0% {
+    background-color: black;
+    color: white;
+    width: 100%;
+  }
+  50% {
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 0;
+    width: unset;
+    right: 0;
+  }
+  100% {
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 0;
+    width: unset;
+    right: 0;
+    color: black;
+    background-color: transparent;
+  }
+}
+
+/* main > div > a {
+  color: black;
+  font-size: clamp(1.2rem, 8vw, 1.6rem);
+  padding-inline: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 1rem;
+  text-decoration: none;
+  text-align: left;
+} */
